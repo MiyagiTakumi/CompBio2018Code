@@ -1,3 +1,3 @@
 ﻿  risan.cpp
-c:\users\icesu\compbio2018\assignment_0416\risan.cpp(50): warning C4477: 'printf' : 書式文字列 '%f' には、型 'double' の引数が必要ですが、可変個引数 1 は型 'int' です
-  Assignment_0416.vcxproj -> C:\Users\icesu\CompBio2018\Assignment_0416\Debug\Assignment_0416.exe
+c:\users\icesu\compbio2018\compbio2018code\02\assignment_0416\risan.cpp(47): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
+  Assignment_0416.vcxproj -> C:\Users\icesu\CompBio2018\CompBio2018Code\02\Assignment_0416\Debug\Assignment_0416.exe
