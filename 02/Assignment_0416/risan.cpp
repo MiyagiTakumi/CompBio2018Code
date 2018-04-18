@@ -40,11 +40,11 @@ void simulate(const long x_ini, const float r, const long double k, const int MA
 int main() {
 	const long x_ini = 100;	//‘æ‚P¢‘ãŒÂ‘Ì”
 	const float MIN_r = 1.0;	//Å’á‘B—¦
-	const float MAX_r = 10;	//Å‘å‘B—¦
+	const float MAX_r = 3.0;	//Å‘å‘B—¦
 	const long double k = 30000;	//ŠÂ‹«û—e—Í
 	const int MAX_GEN = 300;	//Å‘å¢‘ã”
 
-	for (float r = MIN_r; r < MAX_r; r += 0.1) {
+	for (float r = MIN_r; r <= MAX_r; r += 0.1) {
 		simulate(x_ini, r, k, MAX_GEN);
 	}
 
