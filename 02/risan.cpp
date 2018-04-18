@@ -1,10 +1,10 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include <string>
 
 void simulate(const long x_ini, const float r, const long double k, const int MAX_GEN) {
 
-	int x_crnt = 0;	//¡‚Ì¢‘ã‚ÌŒÂ‘Ì”
-	int x_next = 0;	//Ÿ‚Ì¢‘ã‚ÌŒÂ‘Ì”
+	int x_crnt = 0;	//ä»Šã®ä¸–ä»£ã®å€‹ä½“æ•°
+	int x_next = 0;	//æ¬¡ã®ä¸–ä»£ã®å€‹ä½“æ•°
 
 
 	x_crnt = x_ini;
@@ -18,13 +18,13 @@ void simulate(const long x_ini, const float r, const long double k, const int MA
 	FILE* fp;
 	errno_t eCode = fopen_s(&fp, FILENAME_array, "w");
 
-	fprintf(fp, "‘æ  1¢‘ã\t%d•C\n", x_ini);
+	fprintf(fp, "ç¬¬  1ä¸–ä»£\t%dåŒ¹\n", x_ini);
 
 	for (int i = 2; i < MAX_GEN; i++) {
 
-		x_next = int(x_crnt + r * (1 - x_crnt / k)*x_crnt);	//ƒƒWƒXƒeƒBƒbƒNƒ‚ƒfƒ‹
+		x_next = int(x_crnt + r * (1 - x_crnt / k)*x_crnt);	//ãƒ­ã‚¸ã‚¹ãƒ†ã‚£ãƒƒã‚¯ãƒ¢ãƒ‡ãƒ«
 
-		fprintf(fp, "‘æ%3d¢‘ã\t%d•C\n", i, x_next);
+		fprintf(fp, "ç¬¬%3dä¸–ä»£\t%dåŒ¹\n", i, x_next);
 
 		if (x_next < 1) {
 			break;
@@ -38,11 +38,11 @@ void simulate(const long x_ini, const float r, const long double k, const int MA
 }
 
 int main() {
-	const long x_ini = 100;	//‘æ‚P¢‘ãŒÂ‘Ì”
-	const float MIN_r = 1.0;	//Å’á‘B—¦
-	const float MAX_r = 3.0;	//Å‘å‘B—¦
-	const long double k = 30000;	//ŠÂ‹«û—e—Í
-	const int MAX_GEN = 300;	//Å‘å¢‘ã”
+	const long x_ini = 100;	//ç¬¬ï¼‘ä¸–ä»£å€‹ä½“æ•°
+	const float MIN_r = 1.0;	//æœ€ä½å¢—æ®–ç‡
+	const float MAX_r = 3.0;	//æœ€å¤§å¢—æ®–ç‡
+	const long double k = 30000;	//ç’°å¢ƒåå®¹åŠ›
+	const int MAX_GEN = 300;	//æœ€å¤§ä¸–ä»£æ•°
 
 	for (float r = MIN_r; r <= MAX_r; r += 0.1) {
 		simulate(x_ini, r, k, MAX_GEN);
