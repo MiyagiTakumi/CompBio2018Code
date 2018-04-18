@@ -1,3 +1,0 @@
-﻿  risan.cpp
-c:\users\icesu\compbio2018\compbio2018code\02\assignment_0416\risan.cpp(47): warning C4305: '+=': 'double' から 'float' へ切り詰めます。
-  Assignment_0416.vcxproj -> C:\Users\icesu\CompBio2018\CompBio2018Code\02\Assignment_0416\Debug\Assignment_0416.exe
