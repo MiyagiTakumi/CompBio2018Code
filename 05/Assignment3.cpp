@@ -11,7 +11,9 @@ int main() {
 	srand(time(NULL));
 	
 	fstream fout;
-	fout.open("RandomWalk.csv", ios::in);
+
+	fout.open("Assignment3.csv", ios::out);
+
 
 	for (int j = 0; j < 5; j++) {
 		position = 0;
@@ -32,6 +34,8 @@ int main() {
 		fout << pos_log[99] << endl;
 
 	}
+
+	fout.close();
 
 	return 0;
 }

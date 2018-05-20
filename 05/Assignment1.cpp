@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <time.h>
 using namespace std;
 
@@ -32,7 +33,7 @@ int main() {
 			sum2 += result[j];
 		}
 
-		cout << "average of " << elementnumber[i] << " data: " << float(sum2) / elementnumber[i] << endl;
+		cout << "average of " << setw(4)<< left << elementnumber[i] << " data: " << float(sum2) / elementnumber[i] << endl;
 
 	}
 		return 0;
