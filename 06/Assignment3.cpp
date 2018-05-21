@@ -1,0 +1,49 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+	/*parameter below*/
+	double t = 50;	//The value of "t" to get S(t) & I(t)
+
+	const double b = 0.001;	//Infection rate
+	const double c = 0.2;	//Recovery and Removal rate
+
+	const double S_ini = 800;	//Initial Susceptible population
+	const double I_ini = 50;	//Initial Infectious population
+	const double R_ini = 20;	//Initial Recovered or Removed population
+
+	const double accuracy = pow(10, 4);
+	const double dt = 1 / accuracy;
+	/*parametor end*/
+
+
+	struct Population {
+		double S;
+		double I;
+		double R;
+	};
+
+	Population current = { S_ini, I_ini, R_ini };
+	Population next = { 0 };
+
+	
+	ofstream fout("SIR_result.csv");
+	if (fout.bad())
+		cout << "ofstream error" << endl;
+
+	for (int i = 0; i < t*accuracy; i++) {
+		next.S = (-b * current.S * current.I)*dt + current.S;
+		next.I = (b * current.S * current.I - c * current.I)*dt + current.I;
+		next.R = (c * current.I)*dt + current.R;
+
+		fout << i + 1 << "," << next.S << "," << next.I << "," << next.R << endl;
+
+		current = next;
+	}
+
+	fout.close();
+
+	return 0;
+}
