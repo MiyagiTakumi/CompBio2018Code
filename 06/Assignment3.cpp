@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <random>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ int main() {
 
 	const double accuracy = pow(10, 4);
 	const double dt = 1 / accuracy;
+
+	const double sigma = 5.0;
 	/*parametor end*/
 
 
@@ -29,17 +32,28 @@ int main() {
 	Population next = { 0 };
 
 	
-	ofstream fout("SIR_result.csv");
+	ofstream fout("Assignment3.csv");
 	if (fout.bad())
 		cout << "ofstream error" << endl;
 
-	for (int i = 0; i < t*accuracy; i++) {
+
+
+	random_device seedgen;
+	mt19937 mt(seedgen());
+	normal_distribution<double> errdist(0, sigma);
+
+
+	fout << "t,S,I,R" << endl;
+	fout << 0 << "," << current.S + errdist(mt) << "," << current.I + errdist(mt) << "," << current.R + errdist(mt) << endl;
+
+	for (int i = 1; i <= t*accuracy; i++) {
 		next.S = (-b * current.S * current.I)*dt + current.S;
 		next.I = (b * current.S * current.I - c * current.I)*dt + current.I;
 		next.R = (c * current.I)*dt + current.R;
 
-		fout << i + 1 << "," << next.S << "," << next.I << "," << next.R << endl;
-
+		if (i % int(accuracy) == 0) {
+			fout << i/accuracy << "," << next.S + errdist(mt) << "," << next.I + errdist(mt) << "," << next.R + errdist(mt) << endl;
+		}
 		current = next;
 	}
 
