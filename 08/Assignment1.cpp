@@ -1,10 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <random>
 using namespace std;
 
 
 const unsigned int CELL_NUM = 100;
-const unsigned int RULE_NUM = 90; //Max:255
+const unsigned int RULE_NUM = 86; //Max:255
 const unsigned int TRIAL_NUM = 100;
 
 
@@ -15,9 +16,15 @@ bool NextCell[CELL_NUM] = { false };
 
 void rule(bool* TempCell,bool* NextCell, int TempNum);
 
-int main() {
 
-	TempCell[int(CELL_NUM / 2)] = true;
+
+int main() {
+	mt19937_64 MT(114514);
+
+	for (int i = 0; i < CELL_NUM; i++) {
+		if (MT() % 8 == 0)
+			TempCell[i] = true;
+	}
 
 	unsigned int judge = RULE_NUM;
 

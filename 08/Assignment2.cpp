@@ -6,7 +6,7 @@ using namespace std;
 
 const unsigned int X_range = 100;
 const unsigned int Y_range = 100;
-const unsigned int MAX_GENERATION = 100;
+const unsigned int MAX_GENERATION = 500;
 
 
 bool TempCell[X_range][Y_range] = { false };
@@ -20,6 +20,9 @@ void step(int x, int y) {
 		for (int j = 0; j < 3; j++) {
 
 			/*loop process for edge of world*/
+			if (i == 1 && j == 1)
+				continue;
+
 			if (x - 1 + i > int(X_range) - 1)
 				a = 0;
 			else if (x - 1 + i < 0)
@@ -27,12 +30,12 @@ void step(int x, int y) {
 			else
 				a = x - 1 + i;
 
-			if (y - 1 + i > int(Y_range - 1))
+			if (y - 1 + j > int(Y_range) - 1)
 				b = 0;
-			else if (y - 1 + i < 0)
+			else if (y - 1 + j < 0)
 				b = Y_range - 1;
 			else
-				b = y - 1 + i;
+				b = y - 1 + j;
 
 
 			sum += TempCell[a][b];
@@ -59,15 +62,30 @@ void step(int x, int y) {
 
 int main() {
 	random_device rd;
-	mt19937 MT(rd());
+	mt19937_64 MT(rd());
 
 	ofstream fout("LifeGame_result.csv");
 	
+
 	/*Initialization*/
 	for (int x = 0; x < X_range; x++) {
 		for (int y = 0; y < Y_range; y++) {
-			TempCell[x][y] = (MT() % 2);
+			if (MT() % 20 == 0)
+				TempCell[x][y] = true;
 		}
+	}
+
+
+	/*data output of initial state*/
+	for (int x = 0; x < X_range; x++) {
+		for (int y = 0; y < Y_range; y++) {
+			fout << TempCell[x][y];
+
+			if (y != Y_range - 1)
+				fout << ',';
+		}
+
+		fout << endl;
 	}
 
 
